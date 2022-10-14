@@ -3,7 +3,7 @@ require('dotenv').config()
 const TelegramBot = require('node-telegram-bot-api');
 const httpsProxyAgent = require('https-proxy-agent');
 const axios = require("axios");
-const cron = require('node-cro');
+const cron = require('node-cron');
 const { proxy }  = JSON.parse(fs.readFileSync('./proxy.json').toString())
 const { userAgent } = JSON.parse(fs.readFileSync('./userAgents.json').toString())
 const data = require("./getData");
@@ -14,6 +14,7 @@ const bot = new TelegramBot(token, {polling: true});
 
 const syncParse = async () => {
     let arrayUrl = await data();
+    console.log(arrayUrl)
     const opts = { 
         headers: {
           accept: '*/*',
@@ -104,7 +105,7 @@ const syncGetBans = async () => {
         i !== bannedASIN.length-1 ? message += `${el[0]} - ${el[3]}\n` : message += `${el[0]} - ${el[3]}\n`
     })
 
-    bot.sendMessage("-1001597833613", message)
+    bot.sendMessage("-586466586", message)
     console.log(message)
 }
 
