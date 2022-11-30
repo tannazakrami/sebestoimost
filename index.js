@@ -39,7 +39,7 @@ const syncParse = async () => {
     console.log(update);
     console.log(arrayUrl);
 }
-
+syncParse()
 cron.schedule('0 0 6,13 * * *', () => {
     syncParse();
 })
