@@ -37,6 +37,7 @@ const syncParse = async () => {
 
     updateGoogleSheets(arrayUrl);
     console.log(update);
+    console.log("test")
     console.log(arrayUrl);
 }
 syncParse()
