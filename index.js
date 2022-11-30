@@ -4,6 +4,7 @@ const cron = require('node-cron');
 const data = require("./getData");
 const bans = require("./getBans");
 const update = require("./updateData")
+const puppeteer = require('puppeteer')
 const token = process.env.BOT_TOKEN;
 const bot = new TelegramBot(token, {polling: true});
 
@@ -12,6 +13,7 @@ const syncParse = async () => {
     console.log(arrayUrl)
 
     const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
+    let pages = await browser.pages()
     let counter = 1;
     for(let i of arrayUrl){
         const page = await browser.newPage();
@@ -39,6 +41,7 @@ const syncParse = async () => {
     console.log(update);
     console.log("test")
     console.log(arrayUrl);
+    await browser.close()
 }
 syncParse()
 cron.schedule('0 0 6,13 * * *', () => {
