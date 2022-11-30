@@ -13,21 +13,20 @@ const syncParse = async () => {
     console.log(arrayUrl)
 
     const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
-    let pages = await browser.pages()
     let counter = 1;
     for(let i of arrayUrl){
         const page = await browser.newPage();
 
         await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
-        
-        counter == 1 ? await pages[0].close() : null
 
         try{
-            await page.click('#g')
-            i[1] = "Бан"
-
-            let pages = await browser.pages();
-            await pages[0].close()
+            let element = await page.$('#g')
+            if(element == null){
+                i[1] = "Активен"
+            }
+            else{
+                i[1] = "Бан"
+            }
         }
         catch{
             i[1] = "Активен"
@@ -38,12 +37,8 @@ const syncParse = async () => {
     }
 
     updateGoogleSheets(arrayUrl);
-    console.log(update);
-    console.log("test")
-    console.log(arrayUrl);
     await browser.close()
 }
-syncParse()
 cron.schedule('0 0 6,13 * * *', () => {
     syncParse();
 })
