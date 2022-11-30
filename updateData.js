@@ -13,9 +13,9 @@ module.exports = {
             googleSheets.spreadsheets.values.update({
                 auth,
                 spreadsheetId,
-                range:'TEST!C2:D', //`TEST!C${2+index}:D${2+index}`,
+                range:'TEST!B2:C',
                 valueInputOption: "USER_ENTERED",
-                resource: {range: 'TEST!C2:D', majorDimension: "ROWS", values:updatedData}
+                resource: {range: 'TEST!B2:C', majorDimension: "ROWS", values:updatedData}
             }, (err, resp) => {
                 if(err){
                     console.log('Data Error: ',err)

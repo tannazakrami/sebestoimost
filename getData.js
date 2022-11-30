@@ -11,7 +11,7 @@ module.exports = async function getData(){
     let data = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: "TEST!C2:D",
+        range: "TEST!B2:C",
     })
     return data.data.values || undefined;
 }
