@@ -26,7 +26,6 @@ const syncParse = async () => {
             await page.click('#g')
             i[1] = "Бан"
 
-            await page.waitForTimeout(2000)
             let pages = await browser.pages();
             await pages[0].close()
         }
