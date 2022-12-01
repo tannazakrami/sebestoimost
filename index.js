@@ -20,12 +20,12 @@ const syncParse = async () => {
         await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
 
         try{
-            let element = await page.$('#g')
-            if(element == null){
-                i[1] = "Активен"
-            }
-            else{
-                i[1] = "Бан"
+            await page.click('#g')
+            i[1] = "Бан"
+
+            let pages = await browser.pages();
+            if(pages.length >= 3){
+                await pages[1].close()
             }
         }
         catch{
@@ -64,3 +64,4 @@ cron.schedule('0 30 6,13 * * *', () => {
 const updateGoogleSheets = (array) => {
     update.updateData(array);
 }
+syncParse()
