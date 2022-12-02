@@ -21,7 +21,7 @@ const syncParse = async () => {
         await page.waitForTimeout(2000)
         try{
             await page.reload();
-            await page.waitForTimeout(2000)
+            await page.waitForTimeout(5000)
             let element = await page.$('#g') || "Нет элемента";
             console.log(element)
             element == "Нет элемента" ? i[1] = "Активен" : i[1] = "Бан"
@@ -40,7 +40,7 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 20 14 * * *', () => {
+cron.schedule('0 46 14 * * *', () => {
     syncParse();
 })
 
