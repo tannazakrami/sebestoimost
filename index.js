@@ -18,8 +18,9 @@ const syncParse = async () => {
         const page = await browser.newPage();
         await page.waitForTimeout(1000)
         await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
-        await page.waitForTimeout(5000)
+        await page.waitForTimeout(2000)
         try{
+            await page.reload();
             await page.waitForTimeout(2000)
             let element = await page.$('#g') || "Нет элемента";
             console.log(element)
@@ -39,7 +40,7 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 14 14 * * *', () => {
+cron.schedule('0 20 14 * * *', () => {
     syncParse();
 })
 
