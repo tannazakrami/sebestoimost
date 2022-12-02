@@ -12,7 +12,7 @@ const syncParse = async () => {
     let arrayUrl = await data();
     console.log(arrayUrl)
 
-    const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
+    const browser = await puppeteer.launch({headless: false, args: ['--no-sandbox']})
     let counter = 1;
     for(let i of arrayUrl){
         const page = await browser.newPage();
@@ -39,7 +39,7 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 55 13 * * *', () => {
+cron.schedule('0 3 14 * * *', () => {
     syncParse();
 })
 const syncGetBans = async () => {
