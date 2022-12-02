@@ -12,7 +12,7 @@ const syncParse = async () => {
     let arrayUrl = await data();
     console.log(arrayUrl)
 
-    const browser = await puppeteer.launch({headless: false, args: ['--no-sandbox']})
+    const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
     let counter = 1;
     for(let i of arrayUrl){
         const page = await browser.newPage();
