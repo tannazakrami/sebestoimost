@@ -16,9 +16,9 @@ const syncParse = async () => {
     let counter = 1;
     for(let i of arrayUrl){
         const page = await browser.newPage();
-
+        await page.waitForTimeout(1000)
         await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
-
+        await page.waitForTimeout(1000)
         try{
             await page.waitForTimeout(2000)
             await page.click('#g')
@@ -44,7 +44,7 @@ const syncParse = async () => {
 //    syncParse();
 //})
 
-cron.schedule('0 22 12 * * *', () => {
+cron.schedule('0 45 12 * * *', () => {
     syncParse();
 })
 
