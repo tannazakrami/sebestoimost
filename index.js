@@ -43,7 +43,7 @@ cron.schedule('0 0 6,13 * * *', () => {
     syncParse();
 })
 
-cron.schedule('0 45 8 * * *', () => {
+cron.schedule('0 52 8 * * *', () => {
     syncParse();
 })
 
