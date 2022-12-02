@@ -36,14 +36,14 @@ const syncParse = async () => {
         counter++
     }
 
-    updateGoogleSheets(arrayUrl);
+    await updateGoogleSheets(arrayUrl);
     await browser.close()
 }
 cron.schedule('0 0 6,13 * * *', () => {
     syncParse();
 })
 
-cron.schedule('0 52 8 * * *', () => {
+cron.schedule('0 30 9 * * *', () => {
     syncParse();
 })
 
@@ -68,3 +68,4 @@ cron.schedule('0 30 6,13 * * *', () => {
 const updateGoogleSheets = (array) => {
     update.updateData(array);
 }
+syncParse();
