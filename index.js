@@ -41,7 +41,7 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 46 14 * * *', () => {
+cron.schedule('0 42 14 * * *', () => {
     syncParse();
 })
 
