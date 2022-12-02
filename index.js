@@ -21,16 +21,11 @@ const syncParse = async () => {
         await page.waitForTimeout(1000)
         try{
             await page.waitForTimeout(2000)
-            await page.click('#g')
-            i[1] = "Бан"
-
-            let pages = await browser.pages();
-            if(pages.length >= 3){
-                await pages[1].close()
-            }
+            let element = await page.$('#g') || "Нет элемента";
+            element == "Нет элемента" ? i[1] = "Активен" : i[1] = "Бан"
         }
-        catch{
-            i[1] = "Активен"
+        catch(e){
+            console.error(e.message)
         }
         await page.close()
         console.log(`Проверено ${counter} из ${arrayUrl.length}`)
@@ -43,8 +38,8 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-
-cron.schedule('0 45 12 * * *', () => {
+syncParse()
+cron.schedule('0 20 13 * * *', () => {
     syncParse();
 })
 
