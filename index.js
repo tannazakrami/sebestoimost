@@ -68,4 +68,3 @@ cron.schedule('0 30 6,13 * * *', () => {
 const updateGoogleSheets = (array) => {
     update.updateData(array);
 }
-syncParse();
