@@ -17,9 +17,7 @@ const syncParse = async () => {
     for(let i of arrayUrl){
         const page = await browser.newPage();
         await page.waitForTimeout(1000)
-        await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
-        await page.reload();
-        await page.waitForTimeout(2500)
+        await page.goto(`https://www.amazon.com/dp/${i[0]}`)
         try{
             await page.reload();
             await page.waitForTimeout(3000)
@@ -30,7 +28,6 @@ const syncParse = async () => {
         catch(e){
             console.error(e.message)
         }
-        await page.close()
         console.log(`Проверено ${counter} из ${arrayUrl.length}`)
         counter++
     }
@@ -41,7 +38,7 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 58 14 * * *', () => {
+cron.schedule('0 05 15 * * *', () => {
     syncParse();
 })
 
