@@ -12,7 +12,7 @@ const syncParse = async () => {
     let arrayUrl = await data();
     console.log(arrayUrl)
 
-    const browser = await puppeteer.launch({headless: false, args: ['--no-sandbox']})
+    const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
     let counter = 1;
     for(let i of arrayUrl){
         const page = await browser.newPage();
@@ -21,9 +21,9 @@ const syncParse = async () => {
         await page.waitForTimeout(1000)
         try{
             await page.waitForTimeout(2000)
-            let element = await page.$('#d') || "Нет элемента";
+            let element = await page.$('#a-page') || "Нет элемента";
             console.log(element)
-            element == "Нет элемента" ? i[1] = "Активен" : i[1] = "Бан"
+            element == "Нет элемента" ? i[1] = "Бан" : i[1] = "Активен"
         }
         catch(e){
             console.error(e.message)
@@ -39,9 +39,10 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 3 14 * * *', () => {
+cron.schedule('0 10 14 * * *', () => {
     syncParse();
 })
+syncParse();
 const syncGetBans = async () => {
     let arrayBans = await bans();
 
