@@ -18,10 +18,11 @@ const syncParse = async () => {
         const page = await browser.newPage();
         await page.waitForTimeout(1000)
         await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
-        await page.waitForTimeout(2000)
+        await page.reload();
+        await page.waitForTimeout(2500)
         try{
             await page.reload();
-            await page.waitForTimeout(5000)
+            await page.waitForTimeout(3000)
             let element = await page.$('#g') || "Нет элемента";
             console.log(element)
             element == "Нет элемента" ? i[1] = "Активен" : i[1] = "Бан"
