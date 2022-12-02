@@ -47,8 +47,6 @@ cron.schedule('0 45 8 * * *', () => {
     syncParse();
 })
 
-syncParse();
-
 const syncGetBans = async () => {
     let arrayBans = await bans();
 
