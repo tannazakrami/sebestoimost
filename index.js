@@ -32,7 +32,7 @@ const syncParse = async () => {
         catch{
             i[1] = "Активен"
         }
-        page.close()
+        await page.close()
         console.log(`Проверено ${counter} из ${arrayUrl.length}`)
         counter++
     }
