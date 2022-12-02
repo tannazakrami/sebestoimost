@@ -40,11 +40,11 @@ const syncParse = async () => {
     await updateGoogleSheets(arrayUrl);
     await browser.close()
 }
-cron.schedule('0 0 6,13 * * *', () => {
-    syncParse();
-})
+//cron.schedule('0 0 6,13 * * *', () => {
+//    syncParse();
+//})
 
-cron.schedule('0 5 11 * * *', () => {
+cron.schedule('0 15 13 * * *', () => {
     syncParse();
 })
 
