@@ -12,14 +12,13 @@ const syncParse = async () => {
     let arrayUrl = await data();
     console.log(arrayUrl)
 
-    const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
     let counter = 1;
     for(let i of arrayUrl){
+        const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']})
         const page = await browser.newPage();
         await page.waitForTimeout(1000)
         await page.goto(`https://www.amazon.com/dp/${i[0]}`)
         try{
-            await page.reload();
             await page.waitForTimeout(3000)
             let element = await page.$('#g') || "Нет элемента";
             console.log(element)
@@ -30,15 +29,15 @@ const syncParse = async () => {
         }
         console.log(`Проверено ${counter} из ${arrayUrl.length}`)
         counter++
+        await browser.close()
     }
 
     await updateGoogleSheets(arrayUrl);
-    await browser.close()
 }
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 05 15 * * *', () => {
+cron.schedule('0 10 15 * * *', () => {
     syncParse();
 })
 
