@@ -21,7 +21,7 @@ const syncParse = async () => {
         await page.waitForTimeout(1000)
         try{
             await page.waitForTimeout(2000)
-            let element = await page.$('#g') || "Нет элемента";
+            let element = await page.$('#d') || "Нет элемента";
             console.log(element)
             element == "Нет элемента" ? i[1] = "Активен" : i[1] = "Бан"
         }
@@ -39,10 +39,9 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 40 13 * * *', () => {
+cron.schedule('0 55 13 * * *', () => {
     syncParse();
 })
-
 const syncGetBans = async () => {
     let arrayBans = await bans();
 
