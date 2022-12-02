@@ -20,6 +20,7 @@ const syncParse = async () => {
         await page.goto(`https://www.amazon.com/dp/${i[0]}`, {waitUntil: 'networkidle0'})
 
         try{
+            await page.waitForTimeout(2000)
             await page.click('#g')
             i[1] = "Бан"
 
@@ -43,7 +44,7 @@ cron.schedule('0 0 6,13 * * *', () => {
     syncParse();
 })
 
-cron.schedule('0 55 9 * * *', () => {
+cron.schedule('0 5 11 * * *', () => {
     syncParse();
 })
 
