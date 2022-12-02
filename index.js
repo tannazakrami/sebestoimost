@@ -22,6 +22,7 @@ const syncParse = async () => {
         try{
             await page.waitForTimeout(2000)
             let element = await page.$('#g') || "Нет элемента";
+            console.log(element)
             element == "Нет элемента" ? i[1] = "Активен" : i[1] = "Бан"
         }
         catch(e){
@@ -38,7 +39,7 @@ const syncParse = async () => {
 //cron.schedule('0 0 6,13 * * *', () => {
 //    syncParse();
 //})
-cron.schedule('0 20 13 * * *', () => {
+cron.schedule('0 40 13 * * *', () => {
     syncParse();
 })
 
