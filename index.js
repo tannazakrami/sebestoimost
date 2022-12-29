@@ -34,7 +34,7 @@ const syncParse = async () => {
 
     await updateGoogleSheets(arrayUrl);
 }
-cron.schedule('0 50 5,12 * * *', () => {
+cron.schedule('0 50 8,15 * * *', () => {
     syncParse();
 })
 
@@ -52,7 +52,7 @@ const syncGetBans = async () => {
     console.log(message)
 }
 
-cron.schedule('0 30 6,13 * * *', () => {
+cron.schedule('0 30 9,16 * * *', () => {
     syncGetBans();
 })
 
